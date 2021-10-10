@@ -1,0 +1,10 @@
+./host0down.sh
+./host1down.sh
+./host2down.sh
+./host3down.sh
+./host4down.sh
+./host5down.sh
+./host6down.sh
+./host7down.sh
+./host8down.sh
+./host9down.sh

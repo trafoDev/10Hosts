@@ -1,0 +1,38 @@
+version: '2'
+
+volumes:
+  orderer6.hlftest.com:
+  peer0.org6.hlftest.com:
+
+networks:
+  byfn:
+    external:
+      name: first_net
+
+services:
+
+  orderer6.hlftest.com:
+    extends:
+      file: base/peer-base.yaml
+      service: orderer-base
+    environment:
+      - ORDERER_GENERAL_LISTENPORT=12050
+    container_name: orderer6.hlftest.com
+    networks:
+    - byfn
+    volumes:
+        - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+        - ./crypto-config/ordererOrganizations/hlftest.com/orderers/orderer6.hlftest.com/msp:/var/hyperledger/orderer/msp
+        - ./crypto-config/ordererOrganizations/hlftest.com/orderers/orderer6.hlftest.com/tls/:/var/hyperledger/orderer/tls
+        - orderer6.hlftest.com:/var/hyperledger/production/orderer
+    ports:
+    - 12050:12050
+
+  peer0.org6.hlftest.com:
+    container_name: peer0.org6.hlftest.com
+    extends:
+      file:  base/docker-compose-base.yaml
+      service: peer0.org6.hlftest.com
+    networks:
+      - byfn
+

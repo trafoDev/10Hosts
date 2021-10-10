@@ -1,0 +1,40 @@
+# Copyright IBM Corp. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+version: '2'
+
+volumes:
+  orderer0.hlftest.com:
+  peer0.org0.hlftest.com:
+
+networks:
+  byfn:
+    external:
+#      name: first-network
+      name: first_net
+
+services:
+
+  orderer0.hlftest.com:
+    extends:
+      file:   base/docker-compose-base.yaml
+      service: orderer0.hlftest.com
+    environment:
+      - ORDERER_GENERAL_LISTENPORT=6050
+    container_name: orderer0.hlftest.com
+    networks:
+      - byfn
+    ports:
+    - 6050:6050
+
+  peer0.org0.hlftest.com:
+    container_name: peer0.org0.hlftest.com
+    extends:
+      file:  base/docker-compose-base.yaml
+      service: peer0.org0.hlftest.com
+    networks:
+      - byfn
+
+  

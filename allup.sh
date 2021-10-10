@@ -1,0 +1,10 @@
+./host0up.sh
+./host1up.sh
+./host2up.sh
+./host3up.sh
+./host4up.sh
+./host5up.sh
+./host6up.sh
+./host7up.sh
+./host8up.sh
+./host9up.sh
