@@ -1,7 +1,8 @@
+. ./variables.sh
 
 docker exec cli peer chaincode invoke -o orderer3.hlftest.com:9050 \
             --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/hlftest.com/orderers/orderer3.hlftest.com/msp/tlscacerts/tlsca.hlftest.com-cert.pem \
-            -C mychannel -n fabcar --peerAddresses peer0.org1.hlftest.com:7051 \
+            --channelID ${CHANNEL_ID} --name ${CC_NAME} --peerAddresses peer0.org1.hlftest.com:7051 \
             --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.hlftest.com/peers/peer0.org1.hlftest.com/tls/ca.crt \
             --peerAddresses peer0.org0.hlftest.com:6051 \
             --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org0.hlftest.com/peers/peer0.org0.hlftest.com/tls/ca.crt \
@@ -22,4 +23,5 @@ docker exec cli peer chaincode invoke -o orderer3.hlftest.com:9050 \
             --peerAddresses peer0.org9.hlftest.com:15051 \
             --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org9.hlftest.com/peers/peer0.org9.hlftest.com/tls/ca.crt \
             -c '{"Args":["initLedger"]}'
+
 

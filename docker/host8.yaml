@@ -1,0 +1,38 @@
+version: '2'
+
+volumes:
+  orderer8.hlftest.com:
+  peer0.org8.hlftest.com:
+
+networks:
+  hlftest_network:
+    external:
+      name: ${NETWORK_NAME}
+
+services:
+
+  orderer8.hlftest.com:
+    extends:
+      file: base/peer-base.yaml
+      service: orderer-base
+    environment:
+      - ORDERER_GENERAL_LISTENPORT=18050
+    container_name: orderer8.hlftest.com
+    networks:
+    - hlftest_network
+    volumes:
+        - ../channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+        - ../crypto-config/ordererOrganizations/hlftest.com/orderers/orderer8.hlftest.com/msp:/var/hyperledger/orderer/msp
+        - ../crypto-config/ordererOrganizations/hlftest.com/orderers/orderer8.hlftest.com/tls/:/var/hyperledger/orderer/tls
+        - orderer8.hlftest.com:/var/hyperledger/production/orderer
+    ports:
+    - 14050:14050
+
+  peer0.org8.hlftest.com:
+    container_name: peer0.org8.hlftest.com
+    extends:
+      file:  base/docker-compose-base.yaml
+      service: peer0.org8.hlftest.com
+    networks:
+      - hlftest_network
+
