@@ -6,6 +6,8 @@ sleep 10
 
 ./channel.up.sh
 sleep 10
+./channel.anchor.sh
+sleep 10
 
 ./cc.pack.sh
 ./cc.install.all.sh

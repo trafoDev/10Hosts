@@ -12,6 +12,8 @@ Instalacja:
 - 1 peer w każdej organizacji, nazwany  
 - OSN po 1 odererze na organizację.
 - CLI w Org1
+- pojedynczy kanał (fabcarchannel) z jednym CC (fabcar)
+- wszystkie peer'y wskazane jako anchor we własnych organizacjach
 
 Konfiguracja (plik ./variables.sh):
 - nazwa kanału systemowego    SYS_CHANNEL=systemchannel
@@ -51,7 +53,8 @@ Uruchomienie sieci na 10 VM:
 - wykorzystać wygenerowany wcześniej materiał kryptograficzny (można też wygenerować własny jak podano wyżej na jednym z hostów i przekopiować na pozostałe)
 - uruchomić skrypt na każdym hoście kolejno skrypty startujące komponenty **./host.n.up.sh**  gdzie **n**-numer hosta 
 - z hosta 1 (tam zainstalowane jest CLI) wykonać kolejne skrypty (można też nimi uruchomić sieć na pojedynczej VM):
-  - **channel.up.sh** - ucuchomienie kanału 
+  - **channel.up.sh** - uruchomienie kanału 
+  - **channel.anchor.sh** - zadeklarowanie wszystkich peer'ów w ich organizacjach jako anchor 
   - **cc.pack.sh** - spakowanie CC
   - **cc.install.all.sh** - instalacja CC na wszystkich hostach
   - **cc.approve.all.sh** - akceptacja CC we wszystkich organizacjach
